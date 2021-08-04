@@ -19,6 +19,10 @@ function TextArea(props) {
 
     function handleClick(event) {
         props.onAdd(note);
+        setNote({
+            title: "",
+            content: ""
+        });
         event.preventDefault();
     }
 

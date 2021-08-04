@@ -10,9 +10,17 @@ function App() {
 
   const [notes, setNotes] = useState([]);
 
-  function addNote(note) {
+  function addNote(newNote) {
     setNotes((prev) => {
-      return [...prev, note];
+      return [...prev, newNote];
+    })
+  }
+
+  function deleteNote(id) {
+    setNotes((prev) => {
+      return prev.filter((singleNote, index) => {
+        return index !== id;
+      })
     })
   }
 
@@ -20,8 +28,8 @@ function App() {
     <div>
       <Header />
       <TextArea onAdd= {addNote}/>
-      {notes.map((singleNote) => {
-        return <Note title= {singleNote.title} content= {singleNote.content} />
+      {notes.map((singleNote, index) => {
+        return <Note key= {index} id= {index} title= {singleNote.title} content= {singleNote.content} onDelete= {deleteNote} />
       })}
       <Footer />
     </div>
