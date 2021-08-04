@@ -9,7 +9,8 @@ html {
 }
 
 body {
-  background: #eee;
+  background-color: #25008a;
+  background-image: url("https://www.transparenttextures.com/patterns/brick-wall.png");
   padding: 0 16px;
 }
 

@@ -1,6 +1,11 @@
 import React, {useState} from 'react';
+import AddCircleSharpIcon from '@material-ui/icons/AddCircleSharp';
+import Fab from '@material-ui/core/Fab';
+import Zoom from '@material-ui/core/Zoom';
 
 function TextArea(props) {
+
+    const [state, setState] = useState(false);
 
     const [note, setNote] = useState({
         title: "",
@@ -26,12 +31,18 @@ function TextArea(props) {
         event.preventDefault();
     }
 
+    function expand() {
+        setState(true);
+    }
+
     return(
         <div>
            <form className="create-note">
-             <input onChange= {handleChange} name= "title" placeholder= "Note Title" value= {note.title} />
-             <textArea onChange= {handleChange} name= "content" placeholder= "Note Content" rows= "4" value= {note.content} />
-             <button onClick= {handleClick}> ADD </button>
+             {state && (<input onChange= {handleChange} name= "title" placeholder= "Note Title" value= {note.title} />)}
+             <textArea onClick= {expand} onChange= {handleChange} name= "content" placeholder= "Note Content" rows= {state ? 4 : 1} value= {note.content} />
+             <Zoom in= {state}>
+             <Fab onClick= {handleClick}> <AddCircleSharpIcon /> </Fab>
+             </Zoom>
            </form>
         </div>
     )
